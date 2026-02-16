@@ -8,78 +8,88 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Sacramento&family=Poppins:wght@300;500&display=swap');
 
+*{
+  box-sizing: border-box;
+}
+
 body{
   margin:0;
-  height:100vh;
-  overflow:hidden;
+  min-height:100vh;
   background: linear-gradient(135deg, #3a0f0f, #8e2a2a, #d4a373);
   display:flex;
   justify-content:center;
   align-items:center;
   font-family:'Poppins', sans-serif;
   color:white;
+  padding:20px;
+  overflow:hidden;
 }
 
 .card{
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(14px);
-  padding:60px;
-  border-radius:40px;
-  box-shadow:0 25px 60px rgba(0,0,0,.5);
+  background: rgba(255,255,255,0.10);
+  backdrop-filter: blur(12px);
+  padding:40px;
+  border-radius:25px;
+  box-shadow:0 20px 50px rgba(0,0,0,.5);
   text-align:center;
-  max-width:650px;
-  z-index:10;
+  max-width:600px;
+  width:100%;
   position:relative;
+  z-index:10;
 }
 
 h1{
   font-family:'Sacramento', cursive;
-  font-size:65px;
+  font-size:48px;
   color:#ffd6d6;
+  margin-bottom:25px;
 }
 
 .message{
-  font-size:22px;
-  margin:18px 0;
+  font-size:18px;
   line-height:1.6;
-  color:#fff;
+  margin:18px 0;
 }
 
 #countdown{
-  margin-top:20px;
-  font-size:20px;
-  font-weight:500;
+  margin-top:15px;
+  font-size:16px;
   color:#ffcccc;
 }
 
 button{
-  margin-top:30px;
-  padding:15px 40px;
-  font-size:18px;
+  margin-top:25px;
+  padding:12px 25px;
+  font-size:16px;
   border:none;
-  border-radius:40px;
+  border-radius:30px;
   background:#ff4d6d;
   color:white;
   cursor:pointer;
-  transition:.3s;
 }
 
-button:hover{
-  transform:scale(1.08);
-  background:#ff1e4d;
+button:active{
+  transform:scale(0.98);
 }
 
 .flower{
   position:absolute;
-  width:90px;
+  width:60px;
   pointer-events:none;
   opacity:0.9;
   animation: float linear infinite;
 }
 
 @keyframes float {
-  0% { transform: translateY(-150px) rotate(0deg); }
+  0% { transform: translateY(-120px) rotate(0deg); }
   100% { transform: translateY(110vh) rotate(360deg); }
+}
+
+/* Desktop */
+@media (min-width: 768px){
+  h1{ font-size:60px; }
+  .message{ font-size:20px; }
+  .flower{ width:80px; }
 }
 </style>
 </head>
@@ -88,15 +98,13 @@ button:hover{
 <div class="card">
   <h1>Fabiola, mis ojitos… ❤️</h1>
 
-  <p class="message">No quiero seguir fingiendo que no te extraño.</p>
-
   <p class="message">
-  Vamos a cenar a un lugar bonito, brindar por nosotros y pasar una noche agradable juntos. Paso por ti el 25 de febrero de 2026 a las 7 pm.
+  No quiero seguir fingiendo que no te extraño.
   </p>
 
   <p class="message">
-  Solo tú y yo…<br>
-  sin pasado, sin presión… solo nosotros.
+  Vamos a cenar, un lugar bonito, brindar por nosotros y pasar una noche agradable juntos. 
+  Solo tú y yo… sin pasado, sin presión… solo nosotros.
   </p>
 
   <div id="countdown"></div>
@@ -109,25 +117,26 @@ button:hover{
 </audio>
 
 <script>
+
 const flores = [
-"https://pngimg.com/uploads/rose/rose_PNG669.png",
-"https://pngimg.com/uploads/tulip/tulip_PNG100227.png",
-"https://pngimg.com/uploads/sunflower/sunflower_PNG13416.png",
-"https://pngimg.com/uploads/lily/lily_PNG9345.png",
-"https://pngimg.com/uploads/gerbera/gerbera_PNG100112.png",
-"https://pngimg.com/uploads/hydrangea/hydrangea_PNG10138.png"
+"imagenes/rosa.png",
+"imagenes/tulipan.png",
+"imagenes/gerbera.png",
+"imagenes/hortensia.png",
+"imagenes/girasol.png",
+"imagenes/lirio.png"
 ];
 
-for(let i=0;i<35;i++){
+for(let i=0;i<30;i++){
   let img=document.createElement("img");
   img.src=flores[Math.floor(Math.random()*flores.length)];
   img.className="flower";
   img.style.left=Math.random()*100+"vw";
-  img.style.animationDuration = (8 + Math.random()*8) + "s";
+  img.style.animationDuration = (8 + Math.random()*6) + "s";
   document.body.appendChild(img);
 }
 
-// Cuenta regresiva al 25 febrero 2026 19:00
+// Cuenta regresiva
 const fechaCita = new Date("Feb 25, 2026 19:00:00").getTime();
 
 setInterval(function() {
@@ -150,6 +159,7 @@ setInterval(function() {
 function playMusic(){
   document.getElementById("musica").play();
 }
+
 </script>
 
 </body>
