@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fabiola, mis ojitos… ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&family=Poppins:wght@400;600&display=swap');
+
+body{
+  margin:0;
+  height:100vh;
+  overflow:hidden;
+  background: radial-gradient(circle at center, #fff5ec, #f6b93b);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:'Poppins', sans-serif;
+}
+
+.card{
+  background:white;
+  padding:60px;
+  border-radius:40px;
+  box-shadow:0 25px 60px rgba(0,0,0,.3);
+  text-align:center;
+  max-width:650px;
+  z-index:10;
+  position:relative;
+}
+
+h1{
+  font-family:'Sacramento', cursive;
+  font-size:60px;
+  color:#b33939;
+}
+
+.message{
+  font-size:22px;
+  margin:15px 0;
+  color:#6d2c00;
+  line-height:1.6;
+}
+
+#countdown{
+  margin-top:20px;
+  font-size:20px;
+  font-weight:600;
+  color:#b71540;
+}
+
+button{
+  margin-top:30px;
+  padding:15px 35px;
+  font-size:20px;
+  border:none;
+  border-radius:30px;
+  background:#e55039;
+  color:white;
+  cursor:pointer;
+  transition:.3s;
+}
+
+button:hover{
+  transform:scale(1.08);
+  background:#b71540;
+}
+
+.flower{
+  position:absolute;
+  width:80px;
+  pointer-events:none;
+  animation: float linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(-120px) rotate(0deg); }
+  100% { transform: translateY(110vh) rotate(360deg); }
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Fabi, mis ojitos…❤️</h1>
+
+  <p class="message">No quiero seguir fingiendo que no te extraño.</p>
+
+  <p class="message">
+  Vamos a cenar a un lugar bonito, brindar por nosotros y pasar una noche agradable juntos.
+  </p>
+
+  <p class="message">
+  Solo tú y yo…<br>
+  sin pasado, sin presión… solos tu y yo.
+  </p>
+
+  <div id="countdown"></div>
+
+  <button onclick="playMusic()">🎶 Reproducir música</button>
+</div>
+
+<audio id="musica" loop>
+  <source src="pordebajodelamesa.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const flores = [
+"imagenes/rosa.svg",
+"imagenes/tulipan.svg",
+"imagenes/gerbera.svg",
+"imagenes/hortensia.svg",
+"imagenes/girasol.svg",
+"imagenes/lirio.svg"
+];
+
+for(let i=0;i<40;i++){
+  let img=document.createElement("img");
+  img.src=flores[Math.floor(Math.random()*flores.length)];
+  img.className="flower";
+  img.style.left=Math.random()*100+"vw";
+  img.style.animationDuration = (7 + Math.random()*8) + "s";
+  document.body.appendChild(img);
+}
+
+// Cuenta regresiva al 25 de febrero 2026 19:00
+const fechaCita = new Date("Feb 25, 2026 19:00:00").getTime();
+
+setInterval(function() {
+  const ahora = new Date().getTime();
+  const distancia = fechaCita - ahora;
+
+  if (distancia > 0) {
+    const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+    const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerHTML =
+      "Faltan " + dias + "d " + horas + "h " + minutos + "m " + segundos + "s para nuestra cena ❤️";
+  } else {
+    document.getElementById("countdown").innerHTML = "Es hora 💖";
+  }
+}, 1000);
+
+function playMusic(){
+  document.getElementById("musica").play();
+}
+</script>
+
+</body>
+</html>
